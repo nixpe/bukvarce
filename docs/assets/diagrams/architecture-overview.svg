@@ -7,86 +7,90 @@
       <stop offset="100%" stop-color="#fffdf6"/>
     </linearGradient>
     <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
-      <feDropShadow dx="0" dy="8" stdDeviation="10" flood-color="#9bb4c8" flood-opacity="0.18"/>
+      <feDropShadow dx="0" dy="8" stdDeviation="10" flood-color="#9bb4c8" flood-opacity="0.16"/>
       <feMerge>
         <feMergeNode/>
         <feMergeNode in="SourceGraphic"/>
       </feMerge>
     </filter>
-    <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
-      <path d="M0,0 L12,6 L0,12 z" fill="#486581"/>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8.5" refY="5" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L10,5 L0,10 z" fill="#486581"/>
     </marker>
     <style>
-      .title { font: 700 34px 'Segoe UI', Arial, sans-serif; fill: #163a5f; }
-      .subtitle { font: 500 18px 'Segoe UI', Arial, sans-serif; fill: #4e6e8c; }
-      .box-title { font: 700 24px 'Segoe UI', Arial, sans-serif; fill: #163a5f; }
-      .box-body { font: 500 18px 'Segoe UI', Arial, sans-serif; fill: #274b6d; }
-      .small { font: 500 16px 'Segoe UI', Arial, sans-serif; fill: #40607b; }
-      .line { stroke: #486581; stroke-width: 4; fill: none; marker-end: url(#arrow); }
+      .title { font: 700 32px 'Segoe UI', Arial, sans-serif; fill: #163a5f; }
+      .subtitle { font: 500 17px 'Segoe UI', Arial, sans-serif; fill: #4e6e8c; }
+      .box-title { font: 700 21px 'Segoe UI', Arial, sans-serif; fill: #163a5f; }
+      .box-body { font: 500 16px 'Segoe UI', Arial, sans-serif; fill: #274b6d; }
+      .small { font: 500 14px 'Segoe UI', Arial, sans-serif; fill: #40607b; }
+      .line { stroke: #486581; stroke-width: 3.5; fill: none; marker-end: url(#arrow); stroke-linecap: round; stroke-linejoin: round; }
     </style>
   </defs>
 
   <rect width="1400" height="940" rx="36" fill="url(#bg)"/>
 
-  <text x="70" y="80" class="title">Архитектурен преглед</text>
-  <text x="70" y="115" class="subtitle">Статичка веб-апликација со јасно разделени UI, core и integration слоеви</text>
+  <text x="70" y="78" class="title">Архитектурен преглед</text>
+  <text x="70" y="112" class="subtitle">Статичка веб-апликација со јасно разделени UI, core и integration слоеви</text>
 
-  <rect x="70" y="170" width="390" height="260" rx="28" fill="#ffffff" stroke="#c9e5f7" stroke-width="4" filter="url(#shadow)"/>
-  <text x="105" y="225" class="box-title">1. UI и интеракција</text>
-  <text x="105" y="270" class="box-body">• `index.html`</text>
-  <text x="105" y="305" class="box-body">• `src/ui/app.mjs`</text>
-  <text x="105" y="340" class="box-body">• `src/ui/render.mjs`</text>
-  <text x="105" y="375" class="small">Hero status, reading surface, drawers, toolbar,</text>
-  <text x="105" y="402" class="small">guide content, mode switching, keyboard control</text>
+  <rect x="70" y="165" width="360" height="235" rx="26" fill="#ffffff" stroke="#c9e5f7" stroke-width="4" filter="url(#shadow)"/>
+  <text x="103" y="220" class="box-title">1. UI и интеракција</text>
+  <text x="103" y="263" class="box-body">• `index.html`</text>
+  <text x="103" y="295" class="box-body">• `src/ui/app.mjs`</text>
+  <text x="103" y="327" class="box-body">• `src/ui/render.mjs`</text>
+  <text x="103" y="363" class="small">Hero status, reading surface, drawers, toolbar,</text>
+  <text x="103" y="390" class="small">guide content, mode switching, keyboard control</text>
 
-  <rect x="505" y="170" width="390" height="260" rx="28" fill="#ffffff" stroke="#d2efe1" stroke-width="4" filter="url(#shadow)"/>
-  <text x="540" y="225" class="box-title">2. State и прогресија</text>
-  <text x="540" y="270" class="box-body">• `src/ui/state.mjs`</text>
-  <text x="540" y="305" class="box-body">• `src/ui/progression.mjs`</text>
-  <text x="540" y="340" class="box-body">• `src/ui/celebration.mjs`</text>
-  <text x="540" y="375" class="small">Тековен слог, резултат, streak, stars, stickers,</text>
-  <text x="540" y="402" class="small">level progress, celebration overlay, sound cues</text>
+  <rect x="520" y="165" width="360" height="235" rx="26" fill="#ffffff" stroke="#d2efe1" stroke-width="4" filter="url(#shadow)"/>
+  <text x="553" y="220" class="box-title">2. State и прогресија</text>
+  <text x="553" y="263" class="box-body">• `src/ui/state.mjs`</text>
+  <text x="553" y="295" class="box-body">• `src/ui/progression.mjs`</text>
+  <text x="553" y="327" class="box-body">• `src/ui/celebration.mjs`</text>
+  <text x="553" y="363" class="small">Тековен слог, резултат, streak, stars, stickers,</text>
+  <text x="553" y="390" class="small">level progress, celebration overlay, sound cues</text>
 
-  <rect x="940" y="170" width="390" height="300" rx="28" fill="#ffffff" stroke="#ffe0b2" stroke-width="4" filter="url(#shadow)"/>
-  <text x="975" y="225" class="box-title">3. Core јадро</text>
-  <text x="975" y="270" class="box-body">• `normalize.mjs`</text>
-  <text x="975" y="305" class="box-body">• `tokenize.mjs`</text>
-  <text x="975" y="340" class="box-body">• `syllabifier.mjs`</text>
-  <text x="975" y="375" class="box-body">• `dictionary.mjs`</text>
-  <text x="975" y="410" class="small">Нормализација, токенизација, правила за слогување,</text>
-  <text x="975" y="437" class="small">речнички override и casing-preserving излез</text>
+  <rect x="970" y="165" width="360" height="290" rx="26" fill="#ffffff" stroke="#ffe0b2" stroke-width="4" filter="url(#shadow)"/>
+  <text x="1003" y="220" class="box-title">3. Core јадро</text>
+  <text x="1003" y="263" class="box-body">• `normalize.mjs`</text>
+  <text x="1003" y="295" class="box-body">• `tokenize.mjs`</text>
+  <text x="1003" y="327" class="box-body">• `syllabifier.mjs`</text>
+  <text x="1003" y="359" class="box-body">• `dictionary.mjs`</text>
+  <text x="1003" y="391" class="small">Нормализација, токенизација,</text>
+  <text x="1003" y="417" class="small">правила за слогување, речнички</text>
+  <text x="1003" y="443" class="small">override и casing-preserving излез</text>
 
-  <rect x="90" y="560" width="390" height="260" rx="28" fill="#ffffff" stroke="#f6d0d8" stroke-width="4" filter="url(#shadow)"/>
-  <text x="125" y="615" class="box-title">4. Browser интеграции</text>
-  <text x="125" y="660" class="box-body">• `speech.mjs`</text>
-  <text x="125" y="695" class="box-body">• `voice-match.mjs`</text>
-  <text x="125" y="730" class="box-body">• `ocr.mjs`</text>
-  <text x="125" y="765" class="small">Speech synthesis, microphone recognition, quick match,</text>
-  <text x="125" y="792" class="small">settle delay, OCR from photo with Tesseract.js</text>
+  <rect x="70" y="560" width="360" height="270" rx="26" fill="#ffffff" stroke="#f6d0d8" stroke-width="4" filter="url(#shadow)"/>
+  <text x="103" y="615" class="box-title">4. Browser интеграции</text>
+  <text x="103" y="658" class="box-body">• `speech.mjs`</text>
+  <text x="103" y="690" class="box-body">• `voice-match.mjs`</text>
+  <text x="103" y="722" class="box-body">• `ocr.mjs`</text>
+  <text x="103" y="752" class="small">Speech synthesis, microphone recognition,</text>
+  <text x="103" y="778" class="small">quick match, settle delay, OCR from photo</text>
+  <text x="103" y="804" class="small">with Tesseract.js</text>
 
-  <rect x="505" y="560" width="390" height="260" rx="28" fill="#ffffff" stroke="#d8d7ff" stroke-width="4" filter="url(#shadow)"/>
-  <text x="540" y="615" class="box-title">5. Податоци и содржини</text>
-  <text x="540" y="660" class="box-body">• `dict.json`</text>
-  <text x="540" y="695" class="box-body">• `sample-texts.mjs`</text>
-  <text x="540" y="730" class="box-body">• `localStorage`</text>
-  <text x="540" y="765" class="small">Пример-текстови, textbook attribution,</text>
-  <text x="540" y="792" class="small">voice preferences и level progress по ниво</text>
+  <rect x="520" y="560" width="360" height="270" rx="26" fill="#ffffff" stroke="#d8d7ff" stroke-width="4" filter="url(#shadow)"/>
+  <text x="553" y="615" class="box-title">5. Податоци и содржини</text>
+  <text x="553" y="658" class="box-body">• `dict.json`</text>
+  <text x="553" y="690" class="box-body">• `sample-texts.mjs`</text>
+  <text x="553" y="722" class="box-body">• `localStorage`</text>
+  <text x="553" y="752" class="small">Пример-текстови, textbook attribution,</text>
+  <text x="553" y="778" class="small">voice preferences и level progress</text>
+  <text x="553" y="804" class="small">по ниво</text>
 
-  <rect x="940" y="560" width="390" height="260" rx="28" fill="#ffffff" stroke="#cfe9d4" stroke-width="4" filter="url(#shadow)"/>
-  <text x="975" y="615" class="box-title">6. Тест и испорака</text>
-  <text x="975" y="660" class="box-body">• `dev-server.mjs`</text>
-  <text x="975" y="695" class="box-body">• `build-single-html.mjs`</text>
-  <text x="975" y="730" class="box-body">• `tests/unit/*`, `tests/browser/*`</text>
-  <text x="975" y="765" class="small">Локален старт, single-file build,</text>
-  <text x="975" y="792" class="small">unit проверки и smoke coverage</text>
+  <rect x="970" y="560" width="360" height="270" rx="26" fill="#ffffff" stroke="#cfe9d4" stroke-width="4" filter="url(#shadow)"/>
+  <text x="1003" y="615" class="box-title">6. Тест и испорака</text>
+  <text x="1003" y="658" class="box-body">• `dev-server.mjs`</text>
+  <text x="1003" y="690" class="box-body">• `build-single-html.mjs`</text>
+  <text x="1003" y="722" class="box-body">• `tests/unit/*`, `tests/browser/*`</text>
+  <text x="1003" y="752" class="small">Локален старт, single-file build,</text>
+  <text x="1003" y="778" class="small">unit проверки и smoke</text>
+  <text x="1003" y="804" class="small">coverage</text>
 
-  <path class="line" d="M460 280 H495"/>
-  <path class="line" d="M895 280 H930"/>
-  <path class="line" d="M700 430 V540"/>
-  <path class="line" d="M1135 470 V540"/>
-  <path class="line" d="M280 560 V450"/>
-  <path class="line" d="M480 670 H495"/>
-  <path class="line" d="M895 670 H930"/>
+  <path class="line" d="M430 277 H510"/>
+  <path class="line" d="M880 277 H960"/>
+  <path class="line" d="M700 400 V542"/>
+  <path class="line" d="M1150 455 V542"/>
+  <path class="line" d="M250 560 V412"/>
+  <path class="line" d="M430 670 H510"/>
+  <path class="line" d="M880 670 H960"/>
 
-  <text x="1180" y="890" class="small" text-anchor="end">Македонски читачки помошник • архитектура</text>
+  <text x="1185" y="900" class="small" text-anchor="end">Македонски читачки помошник • архитектура</text>
 </svg>

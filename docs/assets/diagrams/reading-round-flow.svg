@@ -39,10 +39,10 @@
   <text x="765" y="265" class="step-text">Микрофон или</text>
   <text x="765" y="292" class="step-text">рачна проверка ✅❌</text>
 
-  <rect class="box" x="1060" y="170" width="270" height="150" stroke="#f6d0d8"/>
-  <text x="1095" y="225" class="step-title">4. Рендерирање</text>
-  <text x="1095" y="265" class="step-text">Текстот се дели на</text>
-  <text x="1095" y="292" class="step-text">слогови и се означува почеток</text>
+  <rect class="box" x="1030" y="170" width="300" height="150" stroke="#f6d0d8"/>
+  <text x="1065" y="225" class="step-title">4. Рендерирање</text>
+  <text x="1065" y="265" class="step-text">Текстот се дели на</text>
+  <text x="1065" y="292" class="step-text">слогови и се означува почеток</text>
 
   <!-- Center box -->
   <rect class="box" x="540" y="390" width="320" height="170" stroke="#d8d7ff"/>
@@ -52,17 +52,17 @@
   <text x="575" y="539" class="step-text">и voice-match логика</text>
 
   <!-- Branches below -->
-  <rect class="box" x="180" y="650" width="320" height="170" stroke="#ffe2b5"/>
-  <text x="215" y="705" class="step-title">6A. Успех</text>
-  <text x="215" y="745" class="step-text">Слогот се чисти, се додава</text>
-  <text x="215" y="772" class="step-text">score/streak и се оди понатаму</text>
-  <text x="215" y="799" class="step-text">можно е и повеќе слогови одеднаш</text>
+  <rect class="box" x="140" y="650" width="400" height="170" stroke="#ffe2b5"/>
+  <text x="175" y="705" class="step-title">6A. Успех</text>
+  <text x="175" y="745" class="step-text">Слогот се чисти, се додава</text>
+  <text x="175" y="772" class="step-text">score/streak и се оди понатаму</text>
+  <text x="175" y="799" class="step-text">можно е и повеќе слогови одеднаш</text>
 
-  <rect class="box" x="900" y="650" width="320" height="170" stroke="#f6d0d8"/>
-  <text x="935" y="705" class="step-title">6B. Грешка / retry</text>
-  <text x="935" y="745" class="step-text">Се брои mistake, streak се ресетира</text>
-  <text x="935" y="772" class="step-text">и се останува на истиот дел</text>
-  <text x="935" y="799" class="step-text">или се користи `Слушни` / `Прескокни`</text>
+  <rect class="box" x="840" y="650" width="440" height="170" stroke="#f6d0d8"/>
+  <text x="875" y="705" class="step-title">6B. Грешка / retry</text>
+  <text x="875" y="745" class="step-text">Се брои mistake, streak се ресетира</text>
+  <text x="875" y="772" class="step-text">и се останува на истиот дел</text>
+  <text x="875" y="799" class="step-text">или се користи `Слушни` / `Прескокни`</text>
 
   <!-- Bottom row -->
   <rect class="box" x="180" y="900" width="360" height="170" stroke="#c9e5f7"/>
@@ -78,12 +78,12 @@
   <!-- Top flow -->
   <path class="line" d="M350 245 H390"/>
   <path class="line" d="M680 245 H720"/>
-  <path class="line" d="M1010 245 H1050"/>
-  <path class="line" d="M1195 320 V355 H700 V380"/>
+  <path class="line" d="M1010 245 H1020"/>
+  <path class="line" d="M1180 320 V355 H700 V380"/>
 
   <!-- 5 to branches -->
   <path class="line" d="M700 560 V595 H340 V640"/>
-  <path class="line" d="M700 595 H1028 V640"/>
+  <path class="line" d="M700 595 H1060 V640"/>
 
   <!-- 6A to 7 -->
   <path class="line" d="M340 820 V890"/>
@@ -95,7 +95,7 @@
   <path class="line" d="M540 985 H850"/>
 
   <!-- 6B to 5 -->
-  <path class="line" d="M1060 650 V610 H1320 V475 H870"/>
+  <path class="line" d="M1080 650 V610 H1320 V475 H870"/>
 
   <text x="1270" y="1125" class="step-text" text-anchor="end">Читачки циклус • игра и вежбање</text>
 </svg>
