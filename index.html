@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="mk">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description"
+    content="Македонски помошник за почетно читање, домашна вежба и водено читање." />
+  <meta name="theme-color" content="#f97316" />
+  <title>Букварче</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="stylesheet" href="styles/main.css" />
+</head>
+
+<body>
+  <div class="page-shell">
+    <header class="hero">
+      <div class="hero-grid">
+        <div class="hero-copy-block">
+          <p class="eyebrow">Поддршка за читање</p>
+          <h1>Игра со слогови за мали читатели</h1>
+          <p class="hero-text">Домашна поддршка за почетно читање со текст, глас и мали награди.</p>
+          <div class="panel-side-tools hero-copy-tools">
+            <button id="openSettingsDrawerButton" class="top-tool-button top-tool-button-settings" type="button"
+              aria-controls="settingsDrawer" aria-expanded="false" aria-label="Отвори поставки">
+              <span class="top-tool-button-orb" aria-hidden="true">⚙️</span>
+              <span class="top-tool-button-label">Поставки</span>
+            </button>
+            <button id="openHelpDrawerButton" class="top-tool-button top-tool-button-help" type="button"
+              aria-controls="helpDrawer" aria-expanded="false" aria-label="Отвори помош">
+              <span class="top-tool-button-orb" aria-hidden="true">?</span>
+              <span class="top-tool-button-label">Помош</span>
+            </button>
+          </div>
+          <div class="hero-copy-face-wrap">
+            <div id="heroStatusFace" class="mascot-face hero-status-face" aria-hidden="true">
+              <span class="mascot-eye"></span>
+              <span class="mascot-mouth"></span>
+            </div>
+          </div>
+        </div>
+
+        <aside class="hero-side">
+          <div class="mascot-card">
+            <div class="mascot-top">
+              <div class="mascot-topline">
+                <p class="mascot-name">Статус</p>
+                <button id="heroRoundModeBadge" class="hero-round-mode hero-round-mode-button" type="button"
+                  aria-label="Префрли на вежбање">
+                  <span id="heroRoundModeIcon" class="hero-round-mode-icon" aria-hidden="true">🔊</span>
+                  <span id="heroRoundModeLabel" class="hero-round-mode-label">Вежбање</span>
+                </button>
+              </div>
+              <div class="hero-status-summary">
+                <div class="hero-round-select-wrap">
+                  <button id="heroRoundSelectButton" class="hero-round-select" type="button" aria-controls="inputDrawer"
+                    aria-expanded="false" aria-label="Избери ниво или текст">
+                    <span id="heroRoundTitle" class="mascot-title">Избери ниво</span>
+                    <span id="heroRoundMeta" class="mascot-copy hero-round-select-meta">Отклучувај ниво по ниво со ѕвезди.</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div id="heroProgressBadge" class="hero-badge-progress hero-round-progress" aria-live="polite">
+              <div class="hero-progress-row">
+                <span class="progress-track hero-progress-track">
+                  <span id="progressFill" class="progress-fill hero-progress-fill"></span>
+                  <strong id="progressLabel" class="hero-progress-counter hero-progress-counter-inline">0/0</strong>
+                </span>
+              </div>
+              <span id="nextGoalLabel" class="visually-hidden">До крај: 0</span>
+              <span id="cheerText" class="visually-hidden">✨ Почеток</span>
+              <div class="hero-progress-inline">
+                <span class="hero-progress-chip hero-progress-chip-metric" aria-label="Ѕвезди">
+                  <span class="hero-progress-chip-label">Ѕвезди</span>
+                  <span class="hero-progress-chip-value">
+                    <span class="hero-progress-icon" aria-hidden="true">⭐</span>
+                    <strong id="scoreCount">0</strong>
+                  </span>
+                </span>
+                <span class="hero-progress-chip hero-progress-chip-metric" aria-label="Низа">
+                  <span class="hero-progress-chip-label">Низа</span>
+                  <span class="hero-progress-chip-value">
+                    <span class="hero-progress-icon" aria-hidden="true">🔥</span>
+                    <strong id="streakCount">0</strong>
+                  </span>
+                </span>
+                <span id="achievementBadge" class="hero-progress-chip hero-progress-chip-badges">🏅 0/4</span>
+              </div>
+              <div id="stickerShelf" class="hero-sticker-shelf" aria-label="Колекција на читачки стикери">
+                <article class="hero-sticker-card" data-sticker="starter">
+                  <span class="sticker-icon">СЛ</span>
+                  <strong>Прв погодок</strong>
+                </article>
+                <article class="hero-sticker-card" data-sticker="spark">
+                  <span class="sticker-icon">+++</span>
+                  <strong>Искра</strong>
+                </article>
+                <article class="hero-sticker-card" data-sticker="comet">
+                  <span class="sticker-icon">★→</span>
+                  <strong>Комета</strong>
+                </article>
+                <article class="hero-sticker-card" data-sticker="perfect">
+                  <span class="sticker-icon">★★★</span>
+                  <strong>Без грешка</strong>
+                </article>
+              </div>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </header>
+
+    <main class="layout layout-play">
+      <section class="panel panel-output panel-play" aria-labelledby="output-panel-title">
+        <div class="visually-hidden" aria-hidden="true">
+          <span id="outputPanelIcon">🎮</span>
+          <span id="outputPanelKicker">Игра</span>
+          <h2 id="output-panel-title">Игра со нивоа</h2>
+          <div id="questCard"></div>
+          <h3 id="questTitle">Круг за читање</h3>
+          <p id="missionText">Внеси текст за круг.</p>
+          <span id="syllableCount">0</span>
+          <span id="positionCount">0 / 0</span>
+          <span id="comboPower">Старт</span>
+          <span id="prizeCount">0</span>
+          <span id="levelCount">1</span>
+          <span id="dictionaryCount">0</span>
+        </div>
+
+        <div id="celebrationPanel" class="celebration-panel" hidden>
+          <p class="celebration-kicker">Мисија завршена!</p>
+          <h2 id="celebrationHeading" class="celebration-heading">Ѕвезден финиш</h2>
+          <div id="celebrationStars" class="celebration-stars" aria-label="Оценка: 0 од 3 ѕвезди" data-earned="0">
+            <span class="celebration-star" data-celebration-star="1" aria-hidden="true">★</span>
+            <span class="celebration-star" data-celebration-star="2" aria-hidden="true">★</span>
+            <span class="celebration-star" data-celebration-star="3" aria-hidden="true">★</span>
+          </div>
+          <p id="celebrationSummary" class="celebration-summary">Заврши за 1-3 ѕвезди.</p>
+          <button id="celebrationContinueButton" class="button celebration-button" type="button">Продолжи</button>
+        </div>
+
+        <div class="reading-surface">
+          <div class="reading-surface-head">
+            <div class="reading-surface-lead">
+              <div class="section-headline section-headline-compact reading-surface-titlebar">
+                <span id="readingSurfaceIcon" class="section-title-icon section-title-icon-grass" aria-hidden="true">🎮</span>
+                <div>
+                  <p id="readingSurfaceKicker" class="panel-kicker">Игра</p>
+                  <h3 id="readingSurfaceTitle">Игра со глас</h3>
+                </div>
+              </div>
+              <div class="reading-surface-control-row">
+                <div id="gameInputSwitch" class="game-input-switch" role="group" aria-label="Како се следи читањето">
+                  <span class="game-input-switch-label">Кој помага</span>
+                  <div class="game-input-switch-buttons">
+                    <button id="gameMicModeButton" class="game-input-switch-button" type="button" aria-pressed="true">
+                      <span class="game-input-switch-icon" aria-hidden="true">
+                        <span aria-hidden="true">🎙️</span>
+                      </span>
+                      <span>Глас</span>
+                    </button>
+                    <button id="gameManualModeButton" class="game-input-switch-button" type="button" aria-pressed="false">
+                      <span class="game-input-switch-icon" aria-hidden="true">
+                        <span aria-hidden="true">🧔🏻</span>
+                      </span>
+                      <span>Возрасен</span>
+                    </button>
+                  </div>
+                </div>
+                <div id="heroHeardBadge" class="hero-heard-badge reading-heard-badge" aria-live="polite" hidden>
+                  <button id="heroHeardToggleButton" class="hero-heard-toggle" type="button" aria-label="Вклучи слушање">
+                    <span id="heroHeardToggleIcon" class="hero-heard-toggle-icon" aria-hidden="true">
+                      <span aria-hidden="true">🎙️</span>
+                    </span>
+                  </button>
+                  <div class="hero-heard-copy">
+                    <span class="hero-heard-label">Слушнато</span>
+                    <strong id="heroHeardValue" class="hero-heard-value">—</strong>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="reading-surface-tools">
+              <div id="readingToolbar" class="button-row button-row-compact reading-toolbar" role="group"
+                aria-label="Алатки над текстот">
+                <button class="button reading-tool-button reading-tool-button-start" id="splitButton" type="button" hidden>
+                  <span id="splitButtonGlyph" class="reading-tool-icon" aria-hidden="true">↻</span>
+                  <span>Одново</span>
+                </button>
+                <button class="button reading-tool-button reading-tool-button-success" id="correctButton" type="button">
+                  <span id="correctButtonGlyph" class="reading-tool-icon" aria-hidden="true">✅</span>
+                  <span id="correctButtonLabel">Точно</span>
+                  <span id="correctButtonNote" class="visually-hidden">Добро</span>
+                </button>
+                <button class="button reading-tool-button reading-tool-button-retry" id="wrongButton" type="button">
+                  <span id="wrongButtonGlyph" class="reading-tool-icon" aria-hidden="true">❌</span>
+                  <span id="wrongButtonLabel">Неточно</span>
+                  <span id="wrongButtonNote" class="visually-hidden">Пробај пак</span>
+                </button>
+                <button class="button reading-tool-button reading-tool-button-mic" id="listenButton" type="button" hidden>
+                  <span class="reading-tool-icon" aria-hidden="true">
+                    <span aria-hidden="true">🎙️</span>
+                  </span>
+                  <span id="listenButtonLabel">Кажи</span>
+                  <span id="listenButtonNote" class="visually-hidden">Микрофон слуша</span>
+                </button>
+                <button class="button reading-tool-button reading-tool-button-help" id="speakButton" type="button" hidden>
+                  <span id="speakButtonGlyph" class="reading-tool-icon" aria-hidden="true">🔊</span>
+                  <span id="speakButtonLabel">Слушни</span>
+                  <span id="speakButtonNote" class="visually-hidden">Пример за следниот дел</span>
+                </button>
+                <button class="button reading-tool-button reading-tool-button-skip" id="skipButton" type="button" hidden>
+                  <span class="reading-tool-icon" aria-hidden="true">⏭️</span>
+                  <span>Прескокни</span>
+                </button>
+                <button class="button reading-tool-button" id="playButton" type="button">
+                  <span class="reading-tool-icon" aria-hidden="true">🔊</span>
+                  <span>Слушај</span>
+                </button>
+                <button class="button reading-tool-button" id="pauseButton" type="button" disabled>
+                  <span class="reading-tool-icon" aria-hidden="true">⏸</span>
+                  <span>Стоп</span>
+                </button>
+              </div>
+            </div>
+          </div>
+          <p id="outputHelp" class="field-help visually-hidden">Стрелки за движење. Празно место за вежбање.</p>
+          <div id="outputText" class="reading-output" tabindex="0" aria-describedby="outputHelp"></div>
+        </div>
+      </section>
+    </main>
+
+    <div id="drawerBackdrop" class="drawer-backdrop" aria-hidden="true"></div>
+
+    <aside id="helpDrawer" class="panel drawer-panel drawer-panel-help" role="dialog" aria-modal="true"
+      aria-labelledby="helpDrawerTitle" aria-hidden="true">
+      <div class="drawer-heading">
+        <div class="section-headline section-headline-compact">
+          <span class="section-title-icon section-title-icon-sun" aria-hidden="true">❓</span>
+          <div>
+            <p class="panel-kicker">Помош</p>
+            <h2 id="helpDrawerTitle">Како се игра</h2>
+          </div>
+        </div>
+        <button id="closeHelpDrawerButton" class="drawer-close" type="button" aria-label="Затвори помош"
+          data-drawer-initial-focus>✕</button>
+      </div>
+
+      <section id="playGuide" class="mini-guide drawer-card" aria-labelledby="playGuideTitle"></section>
+    </aside>
+
+    <aside id="inputDrawer" class="panel drawer-panel drawer-panel-input" role="dialog" aria-modal="true"
+      aria-labelledby="input-panel-title" aria-hidden="true">
+      <div class="drawer-heading">
+        <div class="section-headline section-headline-compact">
+          <span id="inputPanelIcon" class="section-title-icon section-title-icon-sky" aria-hidden="true">🎮</span>
+          <div>
+            <p id="inputPanelKicker" class="panel-kicker">Текст</p>
+            <h2 id="input-panel-title">Избери ниво</h2>
+          </div>
+        </div>
+        <button id="closeInputDrawerButton" class="drawer-close" type="button" aria-label="Затвори внес">✕</button>
+      </div>
+
+      <div id="inputSourceTabs" class="input-source-tabs" role="tablist" aria-label="Извор на текст">
+        <button id="sampleSourceTabButton" class="input-source-tab" type="button" role="tab" aria-selected="true"
+          aria-controls="sampleSourcePanel">
+          <span class="input-source-tab-icon" aria-hidden="true">📚</span>
+          <span id="sampleSourceTabLabel" class="input-source-tab-label">Нивоа</span>
+        </button>
+        <button id="cameraSourceTabButton" class="input-source-tab" type="button" role="tab" aria-selected="false"
+          aria-controls="cameraSourcePanel">
+          <span class="input-source-tab-icons" aria-hidden="true">
+            <span class="input-source-tab-icon">📷</span>
+            <span class="input-source-tab-icon">✍️</span>
+          </span>
+          <span id="cameraSourceTabLabel" class="input-source-tab-label">Фото и пишување</span>
+        </button>
+      </div>
+
+      <section id="sampleSourcePanel" class="input-source-panel" role="tabpanel" aria-labelledby="sampleSourceTabButton">
+        <div class="sample-focus-card">
+          <div id="sampleGradeSetup" class="sample-setup">
+            <p class="field-label">🎒 Патека</p>
+            <div id="sampleGradeOptions" class="choice-grid" role="listbox" aria-label="Избор на одделение"></div>
+          </div>
+          <div id="sampleDifficultySetup" class="sample-setup">
+            <p class="field-label">🌶 Предизвик</p>
+            <div id="sampleDifficultyOptions" class="choice-grid" role="listbox" aria-label="Избор на читачки предизвик">
+            </div>
+          </div>
+          <div id="sampleLengthSetup" class="sample-setup">
+            <p class="field-label">📏 Големина</p>
+            <div id="sampleLengthOptions" class="choice-grid" role="listbox" aria-label="Избор на должина на текст"></div>
+          </div>
+          <div class="sample-picker-stack">
+            <select id="sampleTextSelect" class="visually-hidden" aria-hidden="true" tabindex="-1"></select>
+            <div id="sampleTextList" class="sample-text-list" role="listbox" aria-label="Список на читачки нивоа"></div>
+            <p id="sampleDescription" class="feature-note sample-description" aria-live="polite">Нивоата се подготвуваат.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="cameraSourcePanel" class="input-source-panel" role="tabpanel" aria-labelledby="cameraSourceTabButton" hidden>
+        <article class="feature-card drawer-card feature-card-camera" aria-labelledby="ocrToolsTitle">
+          <div class="feature-card-head">
+            <div class="section-headline section-headline-compact">
+              <span class="section-title-icon section-title-icon-berry" aria-hidden="true">📷</span>
+              <div>
+                <p class="panel-kicker">Тренинг</p>
+                <h3 id="ocrToolsTitle">Фото за вежбање</h3>
+              </div>
+            </div>
+            <span class="feature-chip">📷 Фото</span>
+          </div>
+          <p class="field-help">Сликај страница за вежбање надвор од нивоата.</p>
+          <input id="imageInput" class="visually-hidden" type="file" accept="image/*" capture="environment" />
+          <label class="button upload-button" for="imageInput">📷 Сликај / избери</label>
+          <p id="ocrStatus" class="feature-note" aria-live="polite">Подготвено за слика.</p>
+        </article>
+
+        <article class="feature-card drawer-card feature-card-manual" aria-labelledby="manualEntryTitle">
+          <div class="feature-card-head">
+            <div class="section-headline section-headline-compact">
+              <span class="section-title-icon section-title-icon-sun" aria-hidden="true">✍️</span>
+              <div>
+                <p class="panel-kicker">Тренинг</p>
+                <h3 id="manualEntryTitle">Напиши за вежбање</h3>
+              </div>
+            </div>
+            <span class="feature-chip">✍️ Пишување</span>
+          </div>
+          <p class="field-help">За свој текст или поправка на текстот од фото.</p>
+          <label class="field-label" for="inputText">✍️ Текст</label>
+          <textarea id="inputText" class="text-input drawer-text-input" spellcheck="false" aria-describedby="inputHelp"></textarea>
+          <p id="inputHelp" class="field-help">Се менува веднаш. Нов круг: <kbd>Ctrl</kbd>/<kbd>Cmd</kbd> + <kbd>Enter</kbd>.</p>
+        </article>
+      </section>
+
+    </aside>
+
+    <aside id="settingsDrawer" class="panel drawer-panel drawer-panel-settings" role="dialog" aria-modal="true"
+      aria-labelledby="settingsDrawerTitle" aria-hidden="true">
+      <div class="drawer-heading">
+        <div class="section-headline section-headline-compact">
+          <span class="section-title-icon section-title-icon-grass" aria-hidden="true">⚙️</span>
+          <div>
+            <p class="panel-kicker">Поставки</p>
+            <h2 id="settingsDrawerTitle">Поставки за игра</h2>
+          </div>
+        </div>
+        <div class="drawer-heading-tools">
+          <div class="help-link-row help-link-row-drawer">
+            <button class="help-link" type="button" data-guide-link="settingsGuide">❓ Како?</button>
+          </div>
+          <button id="closeSettingsDrawerButton" class="drawer-close" type="button" aria-label="Затвори поставки">✕</button>
+        </div>
+      </div>
+
+      <section id="settingsGuide" class="mini-guide drawer-card" aria-labelledby="settingsGuideTitle">
+        <div class="mini-guide-head">
+          <span class="section-title-icon section-title-icon-sun" aria-hidden="true">⚙️</span>
+          <div>
+            <p class="panel-kicker">Помош</p>
+            <h3 id="settingsGuideTitle">Што прават поставките</h3>
+          </div>
+        </div>
+        <p class="mini-guide-intro">Овде местиш како апликацијата чита на глас, како слуша преку микрофон и дали има звучни ефекти.</p>
+        <div class="mini-guide-grid">
+          <article class="mini-guide-card">
+            <span class="mini-guide-icon" aria-hidden="true">🔊</span>
+            <strong>Читање на глас</strong>
+            <span>Избери кој глас ја чита лекцијата или помошта.</span>
+          </article>
+          <article class="mini-guide-card">
+            <span class="mini-guide-icon" aria-hidden="true">⚡</span>
+            <strong>Брзо слушање</strong>
+            <span>Кога е вклучено, штом се препознае цел збор или низа, апликацијата побрзо продолжува по текстот.</span>
+          </article>
+          <article class="mini-guide-card">
+            <span class="mini-guide-icon" aria-hidden="true">⏱</span>
+            <strong>Почекај по кажано</strong>
+            <span>Колку кратко да почека по кажаното пред да ја провери целата низа. Поголема вредност е помирна, помала е побрза.</span>
+          </article>
+          <article class="mini-guide-card">
+            <span class="mini-guide-icon" aria-hidden="true">🔔</span>
+            <strong>Звук</strong>
+            <span>Вклучи или исклучи клик, награда и други весели звуци.</span>
+          </article>
+        </div>
+      </section>
+
+      <div id="playbackCard" class="playback-card drawer-card">
+        <div class="playback-head">
+          <div class="section-headline section-headline-compact">
+            <span class="section-title-icon section-title-icon-sky" aria-hidden="true">⏱</span>
+            <div>
+              <p class="panel-kicker">Ритам</p>
+              <h3>Брзина</h3>
+            </div>
+          </div>
+        </div>
+        <p class="field-help">Овде го местиш ритамот за вежбање.</p>
+        <div class="range-row">
+          <label class="field-label" for="speedRange">⚡ Брзина</label>
+          <input id="speedRange" class="range-input" type="range" min="500" max="1800" step="100" value="1000"
+            data-drawer-initial-focus />
+          <output id="speedValue" class="range-output" for="speedRange">1,0 s</output>
+        </div>
+        <div class="voice-setup">
+          <button id="voiceAutoButton" class="button voice-quick-toggle-button" type="button">🔈 Авто-читање во вежбање: вклучено</button>
+          <p class="field-help">Кога е вклучено, при напредување низ текстот во „Вежбање“ секој нов дел се чита и на глас. Исклучи го ако сакаш само тивко следење со микрофон или со возрасен.</p>
+        </div>
+      </div>
+
+      <article class="feature-card drawer-card" aria-labelledby="voiceToolsTitle">
+        <div class="feature-card-head">
+          <div class="section-headline section-headline-compact">
+            <span class="section-title-icon section-title-icon-sky" aria-hidden="true">🔊</span>
+            <div>
+              <p class="panel-kicker">Читање</p>
+              <h3 id="voiceToolsTitle">Читање на глас</h3>
+            </div>
+          </div>
+        </div>
+        <p class="field-help">Овде бираш кој глас чита на глас.</p>
+        <div class="voice-setup">
+          <label class="field-label" for="voiceSelect">🔊 Глас за читање</label>
+          <select id="voiceSelect" class="mini-input">
+            <option value="">Автоматски избор</option>
+          </select>
+        </div>
+      </article>
+
+      <article id="microphoneToolsCard" class="feature-card drawer-card" aria-labelledby="microphoneToolsTitle">
+        <div class="feature-card-head">
+        <div class="section-headline section-headline-compact">
+          <span class="section-title-icon section-title-icon-berry" aria-hidden="true">
+            <span aria-hidden="true">🎙️</span>
+          </span>
+            <div>
+              <p class="panel-kicker">Микрофон</p>
+              <h3 id="microphoneToolsTitle">Слушање со микрофон</h3>
+            </div>
+          </div>
+        </div>
+        <p class="field-help">Овие поставки важат кога читањето се следи преку микрофон.</p>
+        <div class="voice-setup">
+          <button id="quickListenToggleButton" class="button voice-quick-toggle-button" type="button">⚡ Брзо слушање: вклучено</button>
+          <p id="quickListenStatus" class="field-help">Штом препознае цел збор или низа, апликацијата веднаш продолжува. Ако слушне само почеток, чека уште многу кратко.</p>
+        </div>
+        <div class="range-row">
+          <label class="field-label" for="microphoneSettleRange">⏱ Почекај по кажано</label>
+          <input id="microphoneSettleRange" class="range-input" type="range" min="100" max="1200" step="50"
+            value="250" />
+          <output id="microphoneSettleValue" class="range-output" for="microphoneSettleRange">0,25 s</output>
+        </div>
+        <p id="microphoneSettleHelp" class="field-help">Ова важи само кога е слушнат недовршен збор. Помала вредност значи побрзо продолжување.</p>
+        <p id="listenIndicator" class="listening-indicator visually-hidden" data-state="idle">Микрофон: мирува</p>
+        <p id="voiceStatus" class="feature-note visually-hidden" aria-live="polite">Гласовните алатки се подготвуваат.</p>
+        <p id="voiceTranscript" class="feature-note visually-hidden">Последно слушнато: —</p>
+      </article>
+
+      <article class="feature-card drawer-card" aria-labelledby="soundToolsTitle">
+        <div class="feature-card-head">
+          <div class="section-headline section-headline-compact">
+            <span class="section-title-icon section-title-icon-sun" aria-hidden="true">🔔</span>
+            <div>
+              <p class="panel-kicker">Звук</p>
+              <h3 id="soundToolsTitle">Весели звуци</h3>
+            </div>
+          </div>
+        </div>
+        <button id="soundToggleButton" class="button sound-toggle-button" type="button">🔊 Звуци: вклучени</button>
+        <p id="soundStatus" class="feature-note visually-hidden" aria-live="polite">
+          Звучните ефекти се подготвуваат за мисијата.
+        </p>
+      </article>
+
+    </aside>
+
+  </div>
+  <div id="confettiBurst" class="confetti-burst" aria-hidden="true">
+    <div id="confettiLayer" class="confetti-layer"></div>
+    <div id="starBurst" class="star-burst"></div>
+  </div>
+
+      <script type="module" src="src/main.mjs"></script>
+</body>
+
+</html>
