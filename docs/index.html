@@ -310,13 +310,16 @@ select {
 }
 
 .hero-progress-row {
-  display: block;
+  display: flex;
+  align-items: center;
+  gap: 12px;
 }
 
 .hero-progress-track {
   position: relative;
   display: block;
-  align-items: center;
+  flex: 1 1 auto;
+  min-width: 0;
   height: 52px;
   margin-top: 0;
   overflow: hidden;
@@ -357,9 +360,8 @@ select {
 }
 
 .hero-progress-counter-inline {
-  position: absolute;
-  top: 50%;
-  right: 14px;
+  position: static;
+  flex: 0 0 auto;
   min-width: 134px;
   min-height: 44px;
   padding: 0 18px;
@@ -373,7 +375,6 @@ select {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  transform: translateY(-50%);
   box-shadow: 0 8px 14px rgba(56, 97, 138, 0.08);
   white-space: nowrap;
 }
@@ -4640,8 +4641,8 @@ kbd {
               <div class="hero-progress-row">
                 <span class="progress-track hero-progress-track">
                   <span id="progressFill" class="progress-fill hero-progress-fill"></span>
-                  <strong id="progressLabel" class="hero-progress-counter hero-progress-counter-inline">0/0</strong>
                 </span>
+                <strong id="progressLabel" class="hero-progress-counter hero-progress-counter-inline">0/0</strong>
               </div>
               <span id="nextGoalLabel" class="visually-hidden">До крај: 0</span>
               <span id="cheerText" class="visually-hidden">✨ Почеток</span>
