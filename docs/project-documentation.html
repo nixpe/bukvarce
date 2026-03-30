@@ -1,0 +1,1004 @@
+<!DOCTYPE html>
+<html lang="mk">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Проектна документација - Букварче</title>
+  <style>
+    @page {
+      size: A4;
+      margin: 16mm 15mm 18mm 15mm;
+    }
+
+    .half-size-img {
+      width: 50%;
+      /* Sets the image to 50% of its parent container's width */
+      height: auto;
+      /* Automatically adjusts the height to maintain the aspect ratio */
+    }
+
+    :root {
+      color-scheme: light;
+      --ink: #1d334a;
+      --ink-soft: #526b83;
+      --accent: #dd6a00;
+      --accent-soft: #fff2df;
+      --line: #d6e5f2;
+      --panel: #ffffff;
+      --panel-soft: #f8fbfe;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      background: #edf5fb;
+    }
+
+    body {
+      margin: 0;
+      font-family: Georgia, Cambria, 'Times New Roman', serif;
+      font-size: 12pt;
+      line-height: 1.58;
+      color: var(--ink);
+      background: linear-gradient(180deg, #f7fbff 0%, #fffdf8 100%);
+    }
+
+    main {
+      max-width: 186mm;
+      margin: 0 auto;
+      padding: 0;
+    }
+
+    p,
+    li,
+    td,
+    th {
+      orphans: 3;
+      widows: 3;
+    }
+
+    p {
+      margin: 0 0 0.82em;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4 {
+      font-family: 'Aptos', 'Segoe UI', 'Trebuchet MS', sans-serif;
+      color: #173b63;
+      line-height: 1.2;
+      margin: 1.15em 0 0.45em;
+      break-after: avoid;
+    }
+
+    h1 {
+      font-size: 23pt;
+      letter-spacing: -0.02em;
+    }
+
+    h2 {
+      font-size: 16.5pt;
+      padding-bottom: 0.16em;
+      border-bottom: 1.5px solid #d7e6f3;
+    }
+
+    h3 {
+      font-size: 13.4pt;
+    }
+
+    h4 {
+      font-size: 12pt;
+    }
+
+    ol,
+    ul {
+      margin: 0 0 0.9em 1.25em;
+      padding: 0;
+    }
+
+    li {
+      margin: 0 0 0.3em;
+    }
+
+    strong {
+      color: #15324f;
+    }
+
+    code {
+      font-family: Consolas, 'Cascadia Code', 'Courier New', monospace;
+      font-size: 0.92em;
+      background: #eef5fb;
+      border: 1px solid #d4e3ef;
+      border-radius: 4px;
+      padding: 0.08em 0.34em;
+    }
+
+    pre {
+      background: #f5f9fd;
+      border: 1px solid #d8e5f1;
+      border-radius: 10px;
+      padding: 14px 16px;
+      overflow: hidden;
+      white-space: pre-wrap;
+      word-break: break-word;
+      margin: 0 0 1em;
+    }
+
+    pre code {
+      background: transparent;
+      border: 0;
+      padding: 0;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 0.55em 0 1.15em;
+      font-size: 9.8pt;
+      background: var(--panel);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 8px 24px rgba(121, 150, 172, 0.12);
+    }
+
+    th,
+    td {
+      border: 1px solid #d8e5f1;
+      padding: 8px 10px;
+      vertical-align: top;
+    }
+
+    th {
+      background: #eef5fb;
+      font-family: 'Aptos', 'Segoe UI', sans-serif;
+      font-weight: 700;
+      color: #183b60;
+      text-align: left;
+    }
+
+    tbody tr:nth-child(even) {
+      background: #fbfdff;
+    }
+
+    figure {
+      margin: 1.1em 0 1.35em;
+      break-inside: avoid;
+    }
+
+    figure img {
+      display: block;
+      width: 100%;
+      height: auto;
+      border: 1px solid #d7e6f2;
+      border-radius: 18px;
+      background: white;
+      box-shadow: 0 14px 36px rgba(112, 143, 168, 0.18);
+        margin-left: auto;
+  margin-right: auto;
+    }
+
+    figcaption {
+      margin-top: 0.55em;
+      font-size: 9.6pt;
+      line-height: 1.45;
+      color: var(--ink-soft);
+        text-align: center;
+    }
+
+    .doc-figure-medium {
+      width: 82%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .doc-figure-narrow {
+      width: 58%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .doc-grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+      margin: 1em 0 1.25em;
+    }
+
+    .doc-grid-2 .doc-figure {
+      margin: 0;
+    }
+
+
+    .page-break {
+      break-after: page;
+      page-break-after: always;
+    }
+
+    .cover {
+      min-height: 250mm;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 16mm 10mm 12mm;
+      background: #ffffff;
+      border-radius: 0;
+      box-shadow: none;
+    }
+
+    .cover-top {
+      text-align: center;
+      margin-top: 6mm;
+    }
+
+    .cover-school {
+      margin: 0 0 18mm;
+      font-family: "Aptos", "Segoe UI", Arial, sans-serif;
+      font-size: 12pt;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: #21456b;
+    }
+
+    .cover-logo {
+      width: 212px;
+      height: auto;
+      margin-bottom: 10px;
+      border: 0 !important;
+      box-shadow: none !important;
+      background: transparent !important;
+    }
+
+    .cover-kicker {
+      margin: 0 0 8mm;
+      font-family: "Aptos", "Segoe UI", Arial, sans-serif;
+      font-size: 12pt;
+      font-weight: 700;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+    }
+
+    .cover h1 {
+      margin: 0;
+      font-size: 31pt;
+      color: #153b60;
+    }
+
+    .cover-subtitle {
+      margin: 8mm auto 0;
+      max-width: 126mm;
+      font-size: 14pt;
+      line-height: 1.45;
+      color: var(--ink-soft);
+      text-align: center;
+    }
+
+    .cover-middle {
+      text-align: center;
+      margin: auto 0;
+    }
+
+    .cover-note {
+      width: 120mm;
+      margin: 10mm auto 0;
+      padding: 8mm 9mm;
+      border: 1px solid var(--line);
+      background: #ffffff;
+      font-size: 11pt;
+      line-height: 1.45;
+      color: #4b647d;
+    }
+
+    .cover-bottom {
+      margin-top: 20mm;
+    }
+
+    .cover-persons {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12mm;
+      width: 100%;
+      font-family: "Aptos", "Segoe UI", Arial, sans-serif;
+      font-size: 12pt;
+      font-weight: 600;
+      color: #203f61;
+    }
+
+    .cover-persons .left {
+      text-align: left;
+    }
+
+    .cover-persons .right {
+      text-align: right;
+    }
+
+    .cover-city {
+      margin-top: 12mm;
+      text-align: center;
+      font-family: "Aptos", "Segoe UI", Arial, sans-serif;
+      font-size: 11.5pt;
+      color: #4f6780;
+    }
+
+    .signature-line {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 10px;
+      color: #38536d;
+    }
+
+    .signature-line .line {
+      flex: 1;
+      border-bottom: 1.4px solid #8eaac4;
+      min-height: 14px;
+    }
+
+    hr {
+      border: 0;
+      border-top: 1px solid #dae6f0;
+      margin: 1.4em 0;
+    }
+
+    blockquote {
+      margin: 1em 0;
+      padding: 0.3em 0 0.3em 1em;
+      border-left: 4px solid #d6e5f1;
+      color: #567089;
+    }
+
+    @media screen {
+      body {
+        padding: 16px 0 40px;
+      }
+
+      main {
+        background: rgba(255, 255, 255, 0.72);
+        border-radius: 18px;
+        padding: 18px;
+        box-shadow: 0 18px 45px rgba(117, 143, 167, 0.15);
+      }
+    }
+
+    @media print {
+
+      html,
+      body {
+        background: #fff;
+      }
+
+      main {
+        box-shadow: none;
+        padding: 0;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main>
+
+    <section class="cover">
+      <div class="cover-top">
+        <p class="cover-school">ДСУ „Математичко-информатичка гимназија“ - Скопје</p>
+        <img class="cover-logo" src="./assets/mig-logo.png" alt="Лого на Математичко-информатичка гимназија" />
+      </div>
+
+      <div class="cover-middle">
+        <h1>Букварче</h1>
+        <p class="cover-subtitle">Едукативна веб-апликација за помош при почетно читање на македонски јазик</p>
+      </div>
+
+
+      <div class="cover-bottom">
+        <div class="cover-persons">
+          <div class="left">Ментор: Влатко Спасев</div>
+          <div class="right">Ученик: Никола Пешевски</div>
+        </div>
+        <div class="cover-city">Скопје, март 2026 година</div>
+      </div>
+    </section>
+
+
+
+    <div class="page-break"></div>
+
+    <h1>Содржина</h1>
+    <ol>
+      <li>Апстракт </li>
+      <li>Вовед </li>
+      <li>Проблем, мотивација и цел на проектот </li>
+      <li>Општ преглед на решението </li>
+      <li>Архитектура на системот </li>
+      <li>Податоци, пример-текстови и локално зачувување </li>
+      <li>Јадро за обработка на текст и разделување на текст на слогови </li>
+      <li>Кориснички интерфејс и употреба на апликацијата </li>
+      <li>Текови на работа и кориснички сценарија </li>
+      <li>Гласовни можности и OCR интеграција </li>
+      <li>Систем за мотивација, напредок и нивоа </li>
+      <li>Заклучок </li>
+      <li>Користена литература</li>
+    </ol>
+    <div class="page-break"></div>
+
+   <h1>1. Апстракт</h1>
+<p>„Букварче“ е веб-апликација за поддршка на почетното читање на македонски јазик. Таа овозможува автоматско разделување на текст на слогови, интерактивно читање со проверка по слогови и режим за вежбање со слушање. Корисникот напредува низ текстот преку сопствен говор, а системот применува елементи на гемификација за мотивација и следење на напредокот. Дополнително, може да се внесе сопствен текст или да се извлече текст од фотографија.</p>
+
+<p>Главната вредност на проектот е што користи посебна логика за македонски јазик и овозможува децата самостојно да вежбаат читање. Во јадрото се применуваат нормализација на текст, разделување на текст на слогови базирано на правила, речнички исклучоци и споредување на говор со тековни и следни слогови. Така апликацијата претставува практично образовно решение, а не само визуелен интерфејс.</p>
+
+<p>Проектот е изработен како статичка клиентска апликација со HTML, CSS и JavaScript. Нема сервер, база на податоци или кориснички профили, па затоа е лесен за користење, демонстрација и испорака.</p>
+
+<h1>2. Вовед</h1>
+<p>Читањето е основа за понатамошното учење. Ако ученикот уште во раната возраст не стекне сигурност во препознавање зборови, слогови и правилен изговор, тоа може да влијае и на успехот во други предмети. Во пракса, помошта најчесто доаѓа од наставник, родител или печатени материјали, но таквата поддршка не е секогаш достапна кога детето сака да вежба.</p>
+
+<p>Токму затоа се појави потребата од апликација што ќе овозможи читањето да се вежба постепено, јасно и самостојно. Наместо текстот да биде прикажан како една целина, тој се дели на помали делови, со што читањето станува полесно за следење и совладување. На овој начин детето е водено чекор по чекор и може да напредува со сопствено темпо.</p>
+
+<p>Целта на проектот е да се изработи практична апликација што ќе им помогне на децата во учењето читање на македонски јазик. Притоа, посебно внимание е посветено на јазичните правила на македонскиот јазик, бидејќи правилното разделување на текст на слогови не може целосно да се реши со општи алатки за други јазици.</p>
+
+<p>Покрај образовната вредност, проектот има и практична примена. Апликацијата е замислена како едноставна и интересна за користење, со цел да го мотивира детето да вежба читање на полесен и попристапен начин.</p>
+    <h1>3. Проблем, мотивација и цел на проектот</h1>
+    <h2>3.1 Проблем што се решава</h2>
+    <p>Во почетното читање детето често се соочува со три тешкотии:</p>
+    <ol>
+      <li>Текстот изгледа преголем и непрегледен.</li>
+      <li>Изговорот и следењето на зборот не се усогласени.</li>
+      <li>Повратната информација доаѓа доцна или не е доволно јасна.</li>
+    </ol>
+    <p>Кога текстот не е визуелно раздвоен, ученикот тешко го одредува следниот чекор. Кога нема јасна помош за изговор,
+      вежбањето се прекинува или станува зависно од присуство на возрасен. Кога повратната информација не е веднаш
+      достапна, ученикот не знае дали напредува правилно. Овој проект се обидува да ги реши сите три проблеми преку
+      комбинација од јасен интерфејс, звучна поддршка и систем за тековна проверка.</p>
+    <h2>3.2 Мотивација</h2>
+    <p>Да се создаде алатка што навистина може да му помогне на дете, родител или наставник во секојдневна вежба.</p>
+    <h2>3.3 Главна цел</h2>
+    <p>Главната цел на проектот е да се изработи достапна, разбирлива и лесно пренослива веб-апликација која:</p>
+    <ol>
+      <li>дели македонски текст на слогови;</li>
+      <li>е од забавен карактер, што би ги привлечило децата да ја користат;</li>
+      <li>овозможува самостојно учење со користење микрофон и проверка на изговор;</li>
+      <li>користи соодветни пример-текстови од официјлни извори, и дополнително преку скенирана слика и сопствен текст;
+      </li>
+      <li>следи напредок и помошни статистики;</li>
+    </ol>
+    <h1>4. Општ преглед на решението</h1>
+    <p>Апликацијата е организирана околу две главни употреби: <code>Игра</code> и <code>Вежбање</code>.</p>
+    <p>Во <code>Игра</code> корисникот избира ниво и се движи низ текстот со цел да ја заврши мисијата. Овој режим е
+      мотивирачки: има низа, поени, ѕвезди, стикери, прослава и отклучување на следно ниво. Во рамките на играта
+      постојат два начина на проверка:</p>
+    <ol>
+      <li><code>Глас</code>, каде што микрофонот слуша и автоматски напредува;</li>
+      <li><code>Провери</code>, каде што возрасен или наставник бележи дали кажаниот дел бил точен.</li>
+    </ol>
+    <p>Во <code>Вежбање</code> нема оценување. Наместо тоа, корисникот мирно слуша, запира, пушта повторно и може да
+      користи sample текст, сопствен рачен внес или фотографија. Овој режим е корисен кога целта не е натпреварувачка,
+      туку постепено запознавање со текстот.</p>
+
+    <h1>5. Архитектура на системот</h1>
+    <p>Апликацијата е реализирана како модуларна статичка веб-апликација. Наместо целиот код да биде сместен во еден
+      голем фајл, проектот е поделен на слоеви: кориснички интерфејс, состојба и прогресија, јадро за обработка на
+      текст, интеграции со browser API, податоци и build/test алатки.</p>
+    <figure class="doc-figure doc-figure-wide">
+      <img src="./assets/diagrams/architecture-overview.svg" alt="Архитектурен дијаграм на апликацијата" />
+      <figcaption><strong>Слика 1.</strong> Архитектурен преглед на системот и односот меѓу UI, core, integrations,
+        податоци и build/test слојот.</figcaption>
+    </figure>
+
+    <h2>5.1 Главни архитектурни слоеви</h2>
+    <p><strong>Табела 4. Главни модули и одговорности</strong></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Слој</th>
+          <th>Најважни датотеки</th>
+          <th>Одговорност</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>UI</td>
+          <td><code>index.html</code>, <code>src/ui/app.mjs</code>, <code>src/ui/render.mjs</code></td>
+          <td>Прикажување, контролирање на интеракции и динамичко менување на интерфејс</td>
+        </tr>
+        <tr>
+          <td>State/Progression</td>
+          <td><code>src/ui/state.mjs</code>, <code>src/ui/progression.mjs</code>, <code>src/ui/celebration.mjs</code>
+          </td>
+          <td>Состојба на кругот, поени, ниво, ѕвезди, стикери, прослава</td>
+        </tr>
+        <tr>
+          <td>Core</td>
+          <td><code>src/core/normalize.mjs</code>, <code>tokenize.mjs</code>, <code>syllabifier.mjs</code>,
+            <code>dictionary.mjs</code>
+          </td>
+          <td>Јазична обработка и разделување на текст на слогови</td>
+        </tr>
+        <tr>
+          <td>Integrations</td>
+          <td><code>src/integrations/speech.mjs</code>, <code>src/integrations/ocr.mjs</code>,
+            <code>src/ui/voice-match.mjs</code>
+          </td>
+          <td>Глас, OCR и споредба на слушнат текст со слогови</td>
+        </tr>
+        <tr>
+          <td>Config/Data</td>
+          <td><code>dict.json</code>, <code>src/config/sample-texts.mjs</code>, <code>src/config/integrations.mjs</code>
+          </td>
+          <td>Речник, пример-текстови и конфигурација на надворешни алатки</td>
+        </tr>
+        <tr>
+          <td>Build/Test</td>
+          <td><code>scripts/dev-server.mjs</code>, <code>scripts/build-single-html.mjs</code>, <code>tests/*</code></td>
+          <td>Стартување, пакување и проверка на проектот</td>
+        </tr>
+      </tbody>
+    </table>
+    <h2>5.2 Статичка природа на решението</h2>
+    <p>Во овој проект нема серверска логика за обработка на податоци. <code>scripts/dev-server.mjs</code> само ги
+      сервира статичките датотеки локално, без база, без API и без сметки за корисници. Тоа го прави проектот:</p>
+    <ol>
+      <li>лесен за демонстрација;</li>
+      <li>лесен за носење на друг компјутер;</li>
+      <li>безбеден во смисла дека нема централизирано чување на ученички податоци;</li>
+      <li>погоден за училишна употреба и презентација.</li>
+    </ol>
+    <div class="page-break"></div>
+
+    <h1>6. Податоци, пример-текстови и локално зачувување</h1>
+    <h2>6.1 Пример-текстови</h2>
+    <p>Еден од најважните делови од проектот е внимателно избраната библиотека на пример-текстови. Во
+      <code>src/config/sample-texts.mjs</code> се дефинирани вкупно <strong>54 пример-текстови</strong>. Тие се
+      организирани по:
+    </p>
+    <ol>
+      <li>одделение;</li>
+      <li>тежина;</li>
+      <li>должина.</li>
+    </ol>
+    <h2>6.2 Речник</h2>
+    <p><code>dict.json</code> е корективен слој над разделувањето на текстот на слогови базирно на правила. Во него се сместени
+      зборови за кои правилата сами по себе не даваат најдобар или најприроден резултат. Ова е особено важно за:</p>
+    <ol>
+      <li>зборови со сложени суфикси;</li>
+      <li>зборови со јазично чувствителна поделба;</li>
+      <li>зборови што треба да се усогласат со наставната практика.</li>
+    </ol>
+    <p>Функцијата <code>applyDictionaryWithCasing</code> во <code>src/core/dictionary.mjs</code> овозможува речничката
+      форма да се примени без да се изгуби оригиналната големина на буквите во текстот. Тоа е мал, но многу важен детаљ
+      за квалитетен излез.</p>
+    <h2>6.3 Локално зачувување</h2>
+    <p>Проектот користи <code>localStorage</code> за три видови локални податоци:</p>
+    <ol>
+      <li>прогрес по нивоа;</li>
+      <li>преференци за глас и микрофон;</li>
+      <li>поставка за звучни ефекти.</li>
+    </ol>
+    <p><strong>Табела 6. Клучеви во <code>localStorage</code></strong></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Клуч</th>
+          <th>Што зачувува</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>mk-reading-aid.level-progress.v1</code></td>
+          <td>дали ниво е прочитано, најдобар број ѕвезди, број на комплетирања и време на последно играње</td>
+        </tr>
+        <tr>
+          <td><code>mk_reading_aid_speech_preferences</code></td>
+          <td>избран глас, <code>microphoneQuickMatch</code>, <code>microphoneSettleDelayMs</code></td>
+        </tr>
+        <tr>
+          <td><code>mk-reading-aid.sound-enabled</code></td>
+          <td>дали се вклучени звучните ефекти</td>
+        </tr>
+      </tbody>
+    </table>
+    <p>Важно е што овој пристап не бара сервер, а сепак му дава на корисникот чувство дека системот „памети“. Оваа
+      локална меморија е доволна за образовен прототип и за реална школска демонстрација.</p>
+    <h1>7. Јадро за обработка на текст и разделување на текст на слогови</h1>
+    <h2>7.1 Општ тек на обработка</h2>
+    <p>За еден текст да стигне до корисничкиот интерфејс како низа од слогови, апликацијата поминува низ неколку чекори:
+    </p>
+    <ol>
+      <li>токенизација на зборови и интерпункција;</li>
+      <li>проверка дали зборот постои во речникот;</li>
+      <li>правило-базирано разделување на слогови ако нема речничка форма;</li>
+      <li>рендерирање на слоговите со јасни визуелни граници.</li>
+    </ol>
+    <p>Овој процес е важен затоа што обезбедува рамнотежа меѓу автоматизација и лингвистичка точност. Само речник не би
+      бил доволен, затоа што би барал огромен број рачни внесови. Само правила исто така не би биле доволни, затоа што
+      кај дел од зборовите се јавуваат случаи каде е потребна јазична корекција.</p>
+    <h2>7.2 Токенизација</h2>
+    <p><code>src/core/tokenize.mjs</code> користи регуларен израз за кирилични зборови и го дели текстот на:</p>
+    <ol>
+      <li><code>word</code> токени;</li>
+      <li><code>text</code> токени.</li>
+    </ol>
+    <p>Со ова интерпункцијата, празните места и новите редови не се губат. Токму затоа излезот ја зачувува оригиналната
+      структура на пасусот, а разделувањето на текстот на слогови се применува само на зборовите.</p>
+    <h2>7.3 Разделување на текст на слогови базирано на правила</h2>
+    <p><code>src/core/syllabifier.mjs</code> е едно од најсилните јадра на проектот. Таму се дефинирани:</p>
+    <ol>
+      <li>сет на вокали;</li>
+      <li>правила за слоготворно <code>р</code>;</li>
+      <li>дозволени почетни групи од две и три согласки;</li>
+      <li>заштитени наставки како <code>-ство</code>, <code>-ски</code>, <code>-ствен</code>, <code>-чки</code> и нивни
+        варијанти.</li>
+    </ol>
+    <p>Кодот не се потпира на едноставна поделба „пред секој самогласка“. Наместо тоа, се применува
+      попрецизна логика што е посоодветна за правописот на македонски јазик.</p>
+    <h2>7.4 Улога на речникот</h2>
+    <p>Функцијата <code>segmentWord(word, dictionaryEntries)</code> прво проверува дали зборот постои во речникот. Ако
+      постои, се користи речничката форма; ако не, се активира <code>segmentWordByRules(word)</code>. Овој пристап е
+      елегантен бидејќи:</p>
+    <ol>
+      <li>чува добра автоматска покриеност;</li>
+      <li>овозможува рачна корекција каде што е потребно;</li>
+      <li>не ја прави апликацијата зависна само од една техника.</li>
+    </ol>
+    <h2>7.5 Примери од тековната кодна база</h2>
+    <p>Следната табела прикажува конкретни резултати од моменталната имплементација на проектот.</p>
+    <p><strong>Табела 7. Примери на разделување на текст на слогови базиирано на правила   и конечно разделување на текст на слогови</strong></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Збор</th>
+          <th>Според правила</th>
+          <th>Финален резултат</th>
+          <th>Забелешка</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>чувство</td>
+          <td><code>чув-ство</code></td>
+          <td><code>чув-ство</code></td>
+          <td>правилата и речникот се совпаѓаат</td>
+        </tr>
+        <tr>
+          <td>англиски</td>
+          <td><code>ан-гли-ски</code></td>
+          <td><code>ан-гли-ски</code></td>
+          <td>правилата даваат добар резултат</td>
+        </tr>
+        <tr>
+          <td>единствен</td>
+          <td><code>е-дин-ствен</code></td>
+          <td><code>е-дин-ствен</code></td>
+          <td>заштитен суфикс <code>-ствен</code></td>
+        </tr>
+        <tr>
+          <td>тргнаа</td>
+          <td><code>трг-на-а</code></td>
+          <td><code>тр-гна-а</code></td>
+          <td>речникот го коригира поточниот излез</td>
+        </tr>
+        <tr>
+          <td>палешка</td>
+          <td><code>па-ле-шка</code></td>
+          <td><code>па-леш-ка</code></td>
+          <td>речничка корекција</td>
+        </tr>
+        <tr>
+          <td>насмевката</td>
+          <td><code>на-сме-вка-та</code></td>
+          <td><code>на-смев-ка-та</code></td>
+          <td>речничка корекција</td>
+        </tr>
+        <tr>
+          <td>прваче</td>
+          <td><code>пр-ва-че</code></td>
+          <td><code>пр-ва-че</code></td>
+          <td>слоготворно <code>р</code></td>
+        </tr>
+        <tr>
+          <td>енциклопедија</td>
+          <td><code>ен-ци-кло-пе-ди-ја</code></td>
+          <td><code>ен-ци-кло-пе-ди-ја</code></td>
+          <td>повеќесложен збор со добар автоматски излез</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="page-break"></div>
+
+    <h1>8. Кориснички интерфејс и употреба на апликацијата</h1>
+    <h2>8.1 Статусна картичка</h2>
+    <p>Статусниот дел е наменет да ја објасни состојбата на кругот без корисникот да мора да размислува технички. Во
+      него се прикажуваат:</p>
+    <ol>
+      <li>активниот наслов на текстот или нивото;</li>
+      <li>textbook attribution;</li>
+      <li>прогресот во кругот;</li>
+      <li>број на ѕвезди, низа и заработени стикери;</li>
+      <li>копче што служи како брз прекинувач меѓу режимите.</li>
+    </ol>
+    <figure class="doc-figure doc-figure-medium">
+      <img class="half-size-img" src="./assets/screenshots/status-card.png"
+        alt="Фокусиран приказ на статусната картичка" />
+      <figcaption><strong>Слика 2.</strong> Статусната картичка го прикажува тековното ниво, напредокот и наградите.
+        Значајно е што копчето горе десно не е само етикета, туку брз прекинувач кон другиот режим.</figcaption>
+    </figure>
+
+    <p>Овој дел е директно поврзан со <code>updateDashboard()</code> и <code>updateHeroBadges()</code> во
+      <code>src/ui/app.mjs</code> и <code>src/ui/progression.mjs</code>. Тоа значи дека статусната картичка не е
+      статична, туку жив приказ на моменталната логика на системот.
+    </p>
+    <h2>8.2 Контроли над површината за читање</h2>
+    <p>Toolbar контролите се менуваат според режимот и според типот на проверка.</p>
+    <figure class="doc-figure doc-figure-wide">
+      <img src="./assets/screenshots/reading-controls.png" alt="Фокусиран приказ на контролите над текстот" />
+      <figcaption><strong>Слика 3.</strong> Контролите над текстот: поставки, помош, копчиња за читање и префрлувач за
+        тип на проверка во играта.</figcaption>
+    </figure>
+
+
+    <h2>8.3 Префрлување меѓу „Глас“ и „Провери“</h2>
+    <p>Во играта корисникот може јасно да избере како ќе се врши проверката. Ако прелистувачот не поддржува препознавање
+      глас, системот автоматски се насочува кон рачна проверка.</p>
+    <figure class="doc-figure doc-figure-narrow">
+      <img class="half-size-img" src="./assets/screenshots/game-check-switch.png" alt="Префрлувач за тип на проверка" />
+      <figcaption><strong>Слика 4.</strong> Преминување меѓу микрофонска и рачна проверка во играчкиот режим.
+      </figcaption>
+    </figure>
+
+    <h2>8.4 Површина за читање</h2>
+    <p>Главната reading surface е местото каде разделувањето на слогови станува видливо и употребливо.</p>
+    <figure class="doc-figure doc-figure-wide">
+      <img class="half-size-img" src="./assets/screenshots/reading-output.png"
+        alt="Површина со раздвоен текст на слогови" />
+      <figcaption><strong>Слика 5.</strong> Приказ на текст разделен на слогови. Секој слог е посебен елемент што
+        овозможува фокус, напредок и повратна реакција.</figcaption>
+    </figure>
+
+    <h2>8.5 Избор на ниво</h2>
+    <p>Во играта drawer панелот за внес се претвора во селектор на нивоа. Наместо едноставен dropdown, се користи grid
+      на картички. Тоа е подобро за визуелно читање, за следење на отклучени нивоа и за чувство на напредок.</p>
+    <figure class="doc-figure doc-figure-medium">
+      <img class="half-size-img" src="./assets/screenshots/level-picker.png" alt="Приказ на мрежа со нивоа" />
+      <figcaption><strong>Слика 6.</strong> Избор на ниво како визуелна патека со отклучување, ѕвезди и означено следно
+        ниво.</figcaption>
+    </figure>
+
+    <h2>8.6 Внес преку фотографија и рачен текст</h2>
+    <p>Во режимот за вежбање на корисникот му се нудат две многу практични можности: фотографирање страница и рачно
+      внесување. Оваа одлука го прави проектот покорисен во пракса.</p>
+    <div class="doc-grid-2">
+      <figure class="doc-figure">
+        <img src="./assets/screenshots/photo-input-card.png" alt="Картичка за внес преку фотографија" />
+        <figcaption><strong>Слика 7.</strong> Внес на текст од фотографија со OCR обработка.</figcaption>
+      </figure>
+      <figure class="doc-figure">
+        <img src="./assets/screenshots/manual-input-card.png" alt="Картичка за рачно внесување текст" />
+        <figcaption><strong>Слика 8.</strong> Рачно пишување на свој текст или корекција на OCR резултат.</figcaption>
+      </figure>
+    </div>
+
+    <h2>8.7 Drawer за поставки</h2>
+    <p>Поставките се различни зависно од режимот. Во играта акцентот е на микрофонското однесување, а во вежбањето на
+      брзината на читање.</p>
+    <div class="doc-grid-2">
+      <figure class="doc-figure">
+        <img class="half-size-img" src="./assets/screenshots/settings-drawer-game.png" alt="Поставки за играта" />
+        <figcaption><strong>Слика 9.</strong> Поставки во игра: избор на глас, брзо слушање, време на почекување по
+          кажано и звучни ефекти.</figcaption>
+      </figure>
+      <figure class="doc-figure">
+        <img class="half-size-img" src="./assets/screenshots/settings-drawer-practice.png"
+          alt="Поставки за вежбањето" />
+        <figcaption><strong>Слика 10.</strong> Поставки во вежбање: брзина на слушање, избор на глас и звук.
+        </figcaption>
+      </figure>
+    </div>
+
+    <div class="page-break"></div>
+
+    <h1>9. Текови на работа и кориснички сценарија</h1>
+    <h2>9.1 Главен тек на еден круг</h2>
+    <p>Во следниот дијаграм е прикажан општиот тек на користење.</p>
+    <figure class="doc-figure doc-figure-wide">
+      <img src="./assets/diagrams/reading-round-flow.svg" alt="Дијаграм на текот на еден круг" />
+      <figcaption><strong>Слика 11.</strong> Главен тек на еден читачки круг: од избор на содржина и режим, до напредок,
+        прослава и следно ниво.</figcaption>
+    </figure>
+
+    <h2>9.2 Сценарио А: Игра со микрофон</h2>
+    <p>Ова е најинтерактивниот тек во апликацијата.</p>
+    <ol>
+      <li>Корисникот избира ниво, а апликацијата го прикажува текстот поделен на слогови и го активира микрофонот.</li>
+      <li>Додека корисникот го изговара текстот, системот проверува дали кажаното се совпаѓа со тековниот или со
+        следните слогови.</li>
+      <li>Ако има совпаѓање, системот напредува; ако нема, корисникот добива предупредување и можност за нов обид.</li>
+      <li>На крај се пресметуваат ѕвезди и се зачувува напредокот.</li>
+    </ol>
+    <p>Овој тек е технички интересен затоа што не се проверува само еден слог како изолиран стринг. Системот може да
+      препознае и повеќе слогови по ред ако корисникот кажал цел збор или кратка низа.</p>
+    <h2>9.3 Сценарио Б: Игра со рачна проверка</h2>
+    <p>Ова сценарио е важно за уреди или ситуации каде микрофонската проверка не е достапна или не е пожелна.</p>
+    <ol>
+      <li>Корисникот избира ниво.</li>
+      <li>Возрасен го слуша изговорот на детето.</li>
+      <li>По секој дел притиска <code>Точно</code> или <code>Неточно</code>.</li>
+      <li>Апликацијата го поместува или задржува фокусот.</li>
+      <li>Се пресметуваат истите награди како и во играта со микрофон.</li>
+    </ol>
+    <h2>9.4 Сценарио В: Вежбање со слушање</h2>
+    <p>Во овој тек корисникот:</p>
+    <ol>
+      <li>избира sample текст, внесува свој текст или користи фотографија;</li>
+      <li>пушта читање на глас со прилагодена брзина;</li>
+      <li>паузира и продолжува по потреба;</li>
+    </ol>
+    <h2>9.5 Обработка на различни влезови</h2>
+    <p>Апликацијата прифаќа три влезни патеки: sample текст, OCR од слика и изговор преку микрофон. Сите тие на крај се
+      спојуваат во една заедничка обработка и реакција на интерфејсот.</p>
+    <figure class="doc-figure doc-figure-wide">
+      <img src="./assets/diagrams/input-processing-flow.svg" alt="Дијаграм за влезни патеки и обработка" />
+      <figcaption><strong>Слика 12.</strong> Влезни патеки и нивното спојување кон заедничката логика за разделување на слогови и UI
+        реакција.</figcaption>
+    </figure>
+
+    <h1>10. Гласовни можности и OCR интеграција</h1>
+    <h2>10.1 Читање на глас</h2>
+    <p><code>src/integrations/speech.mjs</code> користи <code>speechSynthesis</code> за да ја прочита содржината.
+      Системот:</p>
+    <ol>
+      <li>ги листа достапните гласови;</li>
+      <li>се обидува да преферира македонски глас;</li>
+      <li>дозволува рачен избор на конкретен глас;</li>
+      <li>го зачувува изборот во <code>localStorage</code>.</li>
+    </ol>
+    <p>Ова е важно затоа што корисничкото искуство не е исто ако прелистувачот избере произволен глас на друг јазик.
+      Кодот препознава македонски гласови и според јазичен код и според име на глас.</p>
+    <h2>10.2 Препознавање глас</h2>
+    <p>За микрофонската логика се користи <code>SpeechRecognition</code> или <code>webkitSpeechRecognition</code>.
+      Функцијата <code>recognizeOnce()</code>:</p>
+    <ol>
+      <li>бара дозвола за микрофон;</li>
+      <li>слуша ограничено време;</li>
+      <li>собира interim и final transcript;</li>
+      <li>може да се реши порано ако се препознае доволно силен сигнал;</li>
+      <li>реагира на timeout, abort и празен резултат.</li>
+    </ol>
+    <p>Овој дел е една од најсложените технички компоненти во проектот.</p>
+    <h2>10.3 Брзо слушање и „почекај по кажано“</h2>
+    <p>Во играта постојат две посебни микрофонски поставки:</p>
+    <ol>
+      <li><code>microphoneQuickMatch</code></li>
+      <li><code>microphoneSettleDelayMs</code></li>
+    </ol>
+    <p><code>microphoneQuickMatch</code> му дозволува на системот порано да реагира ако interim transcript веќе изгледа
+      како точен погодок. <code>microphoneSettleDelayMs</code> пак одредува колку кратко системот ќе почека за да види
+      дали корисникот ќе продолжи со уште некој слог. Ваквата комбинација е паметна затоа што овозможува фино
+      балансирање меѓу брзина и стабилност.</p>
+    <h2>10.4 Логика за <code>voice-match</code></h2>
+    <p><code>src/ui/voice-match.mjs</code> не споредува само една текстуална низа со една очекувана вредност. Наместо
+      тоа:</p>
+    <ol>
+      <li>го нормализира слушнатиот текст;</li>
+      <li>го дели на слоговни кандидати;</li>
+      <li>го споредува со тековниот и следните слогови;</li>
+      <li>проверува и споени форми без цртички;</li>
+      <li>поддржува partial match за побрза реакција.</li>
+    </ol>
+    <p><strong>Табела 9. Примери од unit тестовите за voice match</strong></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Очекувани слогови</th>
+          <th>Слушнат текст</th>
+          <th>Резултат</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>[&quot;и&quot;, &quot;ма&quot;, &quot;но&quot;]</code></td>
+          <td><code>има</code></td>
+          <td>напредување за 2 слога</td>
+        </tr>
+        <tr>
+          <td><code>[&quot;што&quot;, &quot;и&quot;, &quot;ма&quot;, &quot;но&quot;, &quot;во&quot;]</code></td>
+          <td><code>што има ново</code></td>
+          <td>напредување за 5 слога</td>
+        </tr>
+        <tr>
+          <td><code>[&quot;и&quot;, &quot;ма&quot;]</code></td>
+          <td><code>им</code></td>
+          <td>partial погодок кога е вклучен <code>allowPartial</code></td>
+        </tr>
+        <tr>
+          <td><code>[&quot;на&quot;, &quot;сме&quot;, &quot;вка&quot;, &quot;та&quot;]</code></td>
+          <td><code>насмевката</code></td>
+          <td>напредување за 4 слога</td>
+        </tr>
+      </tbody>
+    </table>
+    <h2>10.5 OCR внес од фотографија</h2>
+    <p><code>src/integrations/ocr.mjs</code> lazy-loadира <code>Tesseract.js</code> од CDN. Конфигурацијата е дефинирана
+      во <code>src/config/integrations.mjs</code>:</p>
+    <ol>
+      <li><code>scriptUrl</code>: Tesseract CDN;</li>
+      <li><code>primaryLanguage</code>: <code>mkd</code>;</li>
+    </ol>
+    <p>При процесирање на фотографијата апликацијата:</p>
+    <ol>
+      <li>ја прикажува тековната фаза на OCR;</li>
+      <li>го внесува добиениот текст во <code>textarea</code>;</li>
+      <li>му дозволува на корисникот да го коригира рачно;</li>
+      <li>веднаш го рендерира за понатамошно читање.</li>
+    </ol>
+    <p>Ова е многу корисна функционалност за реална употреба, затоа што ја поврзува дигиталната апликација со печатени
+      наставни материјали.</p>
+    <h1>11. Гемификација</h1>
+    <h2>11.1 Поени, ниво и низа</h2>
+    <p>Во <code>src/ui/progression.mjs</code> и <code>src/ui/app.mjs</code> се дефинирани правилата за напредок. При
+      точен погодок во игра:</p>
+    <ol>
+      <li>поените се зголемуваат за <code>10 * број на погодени слогови</code>;</li>
+      <li>низата (<code>streak</code>) расте;</li>
+      <li>нивото се пресметува со <code>floor(score / 60) + 1</code>.</li>
+    </ol>
+    <h2>11.2 Milestone моменти</h2>
+    <p>Проектот користи milestone вредности на низа: <code>3</code>, <code>5</code>, <code>8</code>, <code>12</code>.
+      Кога корисникот ќе достигне таква вредност, интерфејсот го одбележува тоа со дополнителна анимација и звук.</p>
+    <h2>11.3 Ѕвезди</h2>
+    <p>Ѕвездите се доделуваат по завршување на мисијата:</p>
+    <ol>
+      <li>3 ѕвезди ако нема грешки;</li>
+      <li>2 ѕвезди ако грешките се во прифатлива граница;</li>
+      <li>1 ѕвезда ако мисијата е завршена, но со повеќе поправки.</li>
+    </ol>
+    <h2>11.4 Стикери</h2>
+    <p>Системот користи и мала shelf колекција од четири стикери:</p>
+    <ol>
+      <li><code>starter</code> за прв точен погодок;</li>
+      <li><code>spark</code> за низа од најмалку 3;</li>
+      <li><code>comet</code> за низа од најмалку 5;</li>
+      <li><code>perfect</code> за завршен круг без грешка.</li>
+    </ol>
+    <h2>11.5 Прослава и следно ниво</h2>
+    <p>Кога корисникот успешно ќе заврши мисија:</p>
+    <ol>
+      <li>се појавува celebration panel;</li>
+      <li>се анимира star rating;</li>
+      <li>се активира confetti;</li>
+      <li>резултатот се запишува;</li>
+      <li>ако постои следно ниво, копчето нуди премин кон него.</li>
+    </ol>
+<h1>12. Заклучок</h1>
+<p>„Букварче“ е апликација наменета за поддршка при учење читање на македонски јазик. Таа овозможува разделување на слогови, интерактивно читање, вежбање и следење на напредокот.</p>
+
+<p>Проектот ги поврзува програмерските знаења со образовна примена. Притоа, вниманието е насочено кон едноставно користење, прегледност и основни функционалности што се потребни за оваа намена.</p>
+
+<p>Темата на проектот е поврзана со почетното учење читање и со можностите за примена на информатичките технологии во образованието.</p>
+
+    <div class="page-break"></div>
+
+    <h1>13. Користена литература</h1>
+    <ol>
+      <li>Делчева-Диздаревиќ, Јасмина. <strong>Македонски јазик, 1 одделение</strong>. е-учебници PDF:
+        <code>https://www.e-ucebnici.mon.gov.mk/pdf/Makedonski%20jazik%20za%201%20odd.%20PRINT.pdf</code>.
+      </li>
+      <li>Делчева-Диздаревиќ, Јасмина. <strong>Македонски јазик, 2 одделение</strong>. е-учебници PDF:
+        <code>https://www.e-ucebnici.mon.gov.mk/pdf/Makedonskijazik_2_makedonski.pdf</code>.
+      </li>
+      <li>Правопис на македонскиот јазик. Електронско издание:
+        <code>https://pravopis.mk/sites/default/files/Pravopis-2017.PDF</code>.
+      </li>
+      <li>MDN Web Docs. <strong>JavaScript
+          modules</strong><code>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules</code>.</li>
+      <li>MDN Web Docs. <strong>Web Speech
+          API</strong><code>https://developer.mozilla.org/en-US/docs/Web/API/Web_Speech_API</code>.</li>
+      <li>Tesseract.js. <code>https://github.com/naptha/tesseract.js</code>.</li>
+    </ol>
+
+  </main>
+</body>
+
+</html>
