@@ -62,6 +62,8 @@
 
     p {
       margin: 0 0 0.82em;
+      text-align: justify;
+      text-indent: 1.5em;
     }
 
     h1,
@@ -96,7 +98,7 @@
 
     ol,
     ul {
-      margin: 0 0 0.9em 1.25em;
+      margin: 0 0 0.9em 2.6em;
       padding: 0;
     }
 
@@ -187,6 +189,47 @@
       line-height: 1.45;
       color: var(--ink-soft);
         text-align: center;
+    }
+
+    .gamification-figure {
+      margin-top: 0.8em;
+    }
+
+    .gamification-shot {
+      width: 100%;
+      height: 190px;
+      max-width: 100%;
+      object-fit: cover;
+    }
+
+    .gamification-progress-shot {
+      height: 225px;
+      object-position: 50% 62%;
+    }
+
+    .gamification-streak-shot {
+      height: 158px;
+      object-position: 50% 74%;
+    }
+
+    .gamification-stars-shot {
+      height: 146px;
+      object-position: 20% 48%;
+    }
+
+    .gamification-stickers-shot {
+      height: 139px;
+      object-position: 50% 91%;
+    }
+
+    .gamification-celebration-shot {
+      height: 195px;
+      object-position: 24% 50%;
+    }
+
+    .gamification-next-shot {
+      height: 195px;
+      object-position: 50% 39%;
     }
 
     .doc-figure-medium {
@@ -292,6 +335,15 @@
       font-size: 11pt;
       line-height: 1.45;
       color: #4b647d;
+    }
+
+    .cover-school,
+    .cover-kicker,
+    .cover-subtitle,
+    .cover-note,
+    .cover-city {
+      text-align: center;
+      text-indent: 0;
     }
 
     .cover-bottom {
@@ -420,7 +472,7 @@
       <li>Кориснички интерфејс и употреба на апликацијата </li>
       <li>Текови на работа и кориснички сценарија </li>
       <li>Гласовни можности и OCR интеграција </li>
-      <li>Систем за мотивација, напредок и нивоа </li>
+      <li>Гемификација </li>
       <li>Заклучок </li>
       <li>Користена литература</li>
     </ol>
@@ -944,9 +996,21 @@
       <li>низата (<code>streak</code>) расте;</li>
       <li>нивото се пресметува со <code>floor(score / 60) + 1</code>.</li>
     </ol>
+    <figure class="doc-figure doc-figure-medium gamification-figure">
+      <img class="gamification-shot gamification-progress-shot" src="./assets/screenshots/status-card.png"
+        alt="Приказ на прогрес, ниво, низа и бројачи во статусната картичка" />
+      <figcaption><strong>Слика 13.</strong> Приказ на бројот на поени, тековното ниво, напредокот во кругот и бројачите
+        што се менуваат со секое точно напредување.</figcaption>
+    </figure>
     <h2>11.2 Milestone моменти</h2>
     <p>Проектот користи milestone вредности на низа: <code>3</code>, <code>5</code>, <code>8</code>, <code>12</code>.
       Кога корисникот ќе достигне таква вредност, интерфејсот го одбележува тоа со дополнителна анимација и звук.</p>
+    <figure class="doc-figure doc-figure-medium gamification-figure">
+      <img class="gamification-shot gamification-streak-shot" src="./assets/screenshots/status-card.png"
+        alt="Фокусиран приказ на статусот и низните елементи за milestone моменти" />
+      <figcaption><strong>Слика 14.</strong> Фокусиран дел од статусната картичка каде се следи тековната низа и
+        моменталниот прогрес, односно местото каде milestone моментите стануваат највидливи за корисникот.</figcaption>
+    </figure>
     <h2>11.3 Ѕвезди</h2>
     <p>Ѕвездите се доделуваат по завршување на мисијата:</p>
     <ol>
@@ -954,14 +1018,26 @@
       <li>2 ѕвезди ако грешките се во прифатлива граница;</li>
       <li>1 ѕвезда ако мисијата е завршена, но со повеќе поправки.</li>
     </ol>
+    <figure class="doc-figure doc-figure-medium gamification-figure">
+      <img class="gamification-shot gamification-stars-shot" src="./assets/screenshots/celebration-panel.png"
+        alt="Фокусиран приказ на ѕвездите при завршување на мисијата" />
+      <figcaption><strong>Слика 15.</strong> Приказ на оценувањето со ѕвезди по завршување на мисијата, со јасно
+        визуелно издвоен резултат од кругот.</figcaption>
+    </figure>
     <h2>11.4 Стикери</h2>
-    <p>Системот користи и мала shelf колекција од четири стикери:</p>
+    <p>Системот користи и мала колекција од четири стикери:</p>
     <ol>
       <li><code>starter</code> за прв точен погодок;</li>
       <li><code>spark</code> за низа од најмалку 3;</li>
       <li><code>comet</code> за низа од најмалку 5;</li>
       <li><code>perfect</code> за завршен круг без грешка.</li>
     </ol>
+    <figure class="doc-figure doc-figure-medium gamification-figure">
+      <img class="gamification-shot gamification-stickers-shot" src="./assets/screenshots/status-card.png"
+        alt="Фокусиран приказ на стикери" />
+      <figcaption><strong>Слика 16.</strong> Стикери што се отклучуваат како мали награди за различни успеси
+        во текот на читањето.</figcaption>
+    </figure>
     <h2>11.5 Прослава и следно ниво</h2>
     <p>Кога корисникот успешно ќе заврши мисија:</p>
     <ol>
